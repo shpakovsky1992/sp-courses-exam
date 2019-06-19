@@ -42,7 +42,7 @@ public class BookSecurityConfigTest {
 
   @Autowired
   private RequestMappingHandlerMapping handlerMapping;
-  
+
   @Autowired
   private Filter springSecurityFilterChain;
 
@@ -60,7 +60,9 @@ public class BookSecurityConfigTest {
   @WithMockUser
   public void test1() throws Exception {
     mvc
-        .perform(get("/book/edit/1").with(user("user").roles("USER")))
+        .perform(get("/book/edit/1")
+                .with(user("user").roles("ADMIN"))
+        )
         .andExpect(status().isForbidden())
         .andExpect(authenticated().withUsername("user"));
   }
@@ -69,7 +71,9 @@ public class BookSecurityConfigTest {
   @WithMockUser
   public void test2() throws Exception {
     mvc
-        .perform(get("/logout").with(user("user").roles("ADMIN")))
+        .perform(get("/exit")
+                .with(user("user").roles("ADMIN"))
+        )
         .andExpect(status().is3xxRedirection())
         .andExpect(unauthenticated());
   }
@@ -101,7 +105,7 @@ public class BookSecurityConfigTest {
     mvc
         .perform(get("/book/edit/1")
             .param("id", "1")
-            .with(user("user").roles("ADMIN"))
+            .with(user("user").roles("DIRECTOR"))
         )
         .andExpect(status().is2xxSuccessful())
         .andExpect(model().hasNoErrors())
@@ -114,7 +118,7 @@ public class BookSecurityConfigTest {
     mvc
         .perform(delete("/book/delete")
             .param("id", "1")
-            .with(user("vasilii").roles("ADMIN"))
+            .with(user("vasilii").roles("ROOT"))
         )
         .andExpect(status().is2xxSuccessful())
         .andExpect(model().hasNoErrors())
