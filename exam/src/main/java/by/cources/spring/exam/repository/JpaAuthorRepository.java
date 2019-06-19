@@ -19,11 +19,13 @@ public class JpaAuthorRepository implements AuthorRepository {
   @Override
   @Transactional
   public List<Author> findWithBookOlderThan(Long value) {
-    String hql = "select distinct a from Book b join b.author a where b.publishedIn < :value";
+    String hql = "select distinct a from Book b join b.author a where b.publishedIn > :value";
     TypedQuery<Author> query = em.createQuery(hql, Author.class);
     query.setParameter("value", value);
     return query.getResultList();
   }
+
+
 
   @Override
   @Transactional
@@ -49,6 +51,12 @@ public class JpaAuthorRepository implements AuthorRepository {
   }
 
   @Override
+  @Transactional
   public void deleteById(Long l) {
+    Author emp =  em.find(Author.class, l);
+    if (emp != null) {
+      em.remove(emp);
+    }
+
   }
 }
