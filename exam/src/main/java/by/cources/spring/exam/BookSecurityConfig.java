@@ -43,8 +43,12 @@ public class BookSecurityConfig extends WebSecurityConfigurerAdapter {
   protected void configure(HttpSecurity http) throws Exception {
     http.authorizeRequests()
         .antMatchers("/login").permitAll()
-        .and().formLogin()
-        .and().logout().permitAll()
+            .antMatchers( "/book/edit/**").hasRole("USER")
+            .antMatchers("/exit").hasAnyRole("USER")
+            .antMatchers("/**").hasAnyRole("USER", "ADMIN")
+            .and().formLogin()
+
+            .and().logout().permitAll()
         .and().csrf().disable();
   }
 }
