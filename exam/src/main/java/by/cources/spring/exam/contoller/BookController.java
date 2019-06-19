@@ -82,4 +82,9 @@ public class BookController {
     model.put("booksVariable", booksAll);
     return new ModelAndView("books", model);
   }
+
+  @RequestMapping(value = "/exit", method = RequestMethod.GET)
+  public ModelAndView exit() {
+    return new ModelAndView("redirect:book/list");
+  }
 }

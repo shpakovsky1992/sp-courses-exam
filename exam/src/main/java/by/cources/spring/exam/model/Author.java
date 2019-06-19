@@ -1,7 +1,5 @@
 package by.cources.spring.exam.model;
 
-import static javax.persistence.CascadeType.ALL;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.time.LocalDate;
 import java.util.List;
@@ -16,6 +14,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
+
+import static javax.persistence.CascadeType.*;
 
 @Entity
 @Table(name = "author")
@@ -34,7 +34,7 @@ public class Author {
   @NotBlank
   private String lastName;
 
-  @OneToMany(cascade = {ALL}, fetch = FetchType.LAZY, mappedBy = "author")
+  @OneToMany(cascade = {PERSIST, MERGE, REFRESH, DETACH}, fetch = FetchType.LAZY, mappedBy = "author")
   @JsonIgnore
   private List<Book> books;
 
