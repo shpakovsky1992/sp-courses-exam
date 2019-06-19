@@ -42,6 +42,7 @@ public class BookSecurityConfigTest {
 
   @Autowired
   private RequestMappingHandlerMapping handlerMapping;
+  
   @Autowired
   private Filter springSecurityFilterChain;
 
