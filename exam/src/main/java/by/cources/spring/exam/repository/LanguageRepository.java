@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 
 public interface LanguageRepository extends CrudRepository<Language, Long> {
 
-  @Query("select l from Language l where l.name = :name")
-  Optional<Language> findByName(@Param("name") String name);
+  @Query("select l from Language l where l.description = :description")
+  Optional<Language> findByName(@Param("description") String description);
 }

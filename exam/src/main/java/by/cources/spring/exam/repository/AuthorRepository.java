@@ -1,6 +1,8 @@
 package by.cources.spring.exam.repository;
 
 import by.cources.spring.exam.model.Author;
+import by.cources.spring.exam.model.Book;
+
 import java.util.List;
 import java.util.Optional;
 

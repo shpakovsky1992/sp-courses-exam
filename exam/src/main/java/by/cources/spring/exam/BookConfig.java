@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
 
 @Configuration
+@PropertySource("classpath:exam/database.properties")
 @ComponentScan("by.cources.spring.exam")
 @Import({
     BookJpaConfig.class,

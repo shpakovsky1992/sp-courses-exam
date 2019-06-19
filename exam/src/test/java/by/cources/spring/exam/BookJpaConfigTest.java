@@ -35,7 +35,7 @@ public class BookJpaConfigTest {
   public void test1() {
     assertEquals(toList(languageRepository.findAll()).size(), 2);
     Language language = new Language();
-    language.setDescription("Italian");
+    language.setName("Italian");
     languageRepository.save(language);
     assertEquals(toList(languageRepository.findAll()).size(), 3);
     languageRepository.delete(language);
@@ -45,7 +45,7 @@ public class BookJpaConfigTest {
   public void test2() {
     assertFalse(languageRepository.findByName("Italian").isPresent());
     Language language = new Language();
-    language.setDescription("Italian");
+    language.setName("Italian");
     languageRepository.save(language);
     assertEquals(toList(languageRepository.findAll()).size(), 3);
     assertTrue(languageRepository.findByName("Russian").isPresent());

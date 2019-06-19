@@ -6,6 +6,6 @@ INSERT INTO author(id, first_name, last_name, date_of_birth)VALUES (3, 'Joanne',
 INSERT INTO author(id, first_name, last_name, date_of_birth)VALUES (4, 'Stephen', 'King', '1947-09-21');
 INSERT INTO book(id, author_id, name, published_in, language_id)VALUES (1, 1, 'Sense and Sensibility', 1811, 1);
 INSERT INTO book(id, author_id, name, published_in, language_id)VALUES (2, 1, 'Pride and Prejudice', 1813, 1);
-INSERT INTO book(id, author_id, name, published_in, language_id)VALUES (3, 2, 'Le Capitaine Paul', 1838, 2);
+INSERT INTO book(id, author_id, name, published_in, language_id)VALUES (3, 2, 'Le Capitaine Paul', 1808, 2);
 INSERT INTO book(id, author_id, name, published_in, language_id)VALUES (4, 2, 'Le Capitaine Pamphile', 1839, 2);
-INSERT INTO book(id, author_id, name, published_in, language_id)VALUES (5, 1, 'Northanger Abbey', 1818, 2);
+INSERT INTO book(id, author_id, name, published_in, language_id)VALUES (5, 1, 'Northanger Abbey', 1808, 2);

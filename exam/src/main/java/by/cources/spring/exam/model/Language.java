@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "language1")
+@Table(name = "language")
 public class Language {
 
   @Id
@@ -16,7 +16,7 @@ public class Language {
   @Column(name = "id")
   private Long id;
 
-  @Column(name = "name")
+  @Column(name = "description")
   private String description;
 
   public Long getId() {
@@ -27,11 +27,11 @@ public class Language {
     this.id = id;
   }
 
-  public String getDescription() {
+  public String getName() {
     return description;
   }
 
-  public void setDescription(String description) {
+  public void setName(String description) {
     this.description = description;
   }
 
