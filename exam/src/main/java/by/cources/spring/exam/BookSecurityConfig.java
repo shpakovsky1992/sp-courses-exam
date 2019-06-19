@@ -36,13 +36,21 @@ public class BookSecurityConfig extends WebSecurityConfigurerAdapter {
         .passwordEncoder(passwordEncoder())
         .withUser("user").password(passwordEncoder().encode("123456")).roles("USER")
         .and()
-        .withUser("admin").password(passwordEncoder().encode("123456")).roles("USER", "ADMIN");
+        .withUser("admin").password(passwordEncoder().encode("123456")).roles("USER", "ADMIN")
+    .and()
+      .withUser("petr").password(passwordEncoder().encode("123456")).roles("USER")
+       .and()
+      .withUser("vasilii").password(passwordEncoder().encode("123456")).roles("ROOT");
   }
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http.authorizeRequests()
         .antMatchers("/login").permitAll()
+        .antMatchers("/book/edit/1").hasRole("USER")
+            .antMatchers("/exit").hasAnyRole("ADMIN","USER")
+        .and().formLogin().defaultSuccessUrl("/login?error")
+        .and().formLogin().defaultSuccessUrl("/book/list")
         .and().formLogin()
         .and().logout().permitAll()
         .and().csrf().disable();
