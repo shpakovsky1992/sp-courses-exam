@@ -1,14 +1,14 @@
 package by.cources.spring.exam.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+import java.util.List;
+
+import static javax.persistence.CascadeType.ALL;
 
 @Entity
-@Table(name = "language1")
+@Table(name = "language")
 public class Language {
 
   @Id
@@ -16,8 +16,12 @@ public class Language {
   @Column(name = "id")
   private Long id;
 
-  @Column(name = "name")
+  @Column(name = "description")
   private String description;
+
+  @OneToMany(cascade = {ALL}, fetch = FetchType.LAZY, mappedBy = "language")
+  @JsonIgnore
+  private List<Book> books;
 
   public Long getId() {
     return id;
