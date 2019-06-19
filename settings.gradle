@@ -1,0 +1,6 @@
+rootProject.name = 'sp-cources'
+
+
+include(':lessons')
+include(':exam')
+
