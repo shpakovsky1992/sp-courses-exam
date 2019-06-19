@@ -34,7 +34,9 @@ public class BookSecurityConfig extends WebSecurityConfigurerAdapter {
     auth.jdbcAuthentication().dataSource(jpaConfig.dataSource())
         .withDefaultSchema()
         .passwordEncoder(passwordEncoder())
-        .withUser("user").password(passwordEncoder().encode("123456")).roles("USER")
+        .withUser("user").password(passwordEncoder().encode("0123456")).roles("USER")
+        .and()
+        .withUser("petr").password(passwordEncoder().encode("123456")).roles("USER")
         .and()
         .withUser("admin").password(passwordEncoder().encode("123456")).roles("USER", "ADMIN");
   }
@@ -43,8 +45,12 @@ public class BookSecurityConfig extends WebSecurityConfigurerAdapter {
   protected void configure(HttpSecurity http) throws Exception {
     http.authorizeRequests()
         .antMatchers("/login").permitAll()
-        .and().formLogin()
-        .and().logout().permitAll()
+        .antMatchers("/book/edit/**").hasAnyRole("USER", "DIRECTOR")
+        .antMatchers("/book/delete").hasAnyRole("ADMIN", "ROOT")
+        .antMatchers("/book/**").hasRole("USER")
+        .antMatchers("/**").hasAnyRole("ADMIN", "USER")
+        .and().formLogin().defaultSuccessUrl("/book/list")
+        .and().logout().logoutUrl("/exit").logoutSuccessUrl("/login").permitAll()
         .and().csrf().disable();
   }
 }
