@@ -1,11 +1,5 @@
 package by.cources.spring.exam.model;
 
-import static javax.persistence.CascadeType.ALL;
-import static javax.persistence.CascadeType.DETACH;
-import static javax.persistence.CascadeType.MERGE;
-import static javax.persistence.CascadeType.PERSIST;
-import static javax.persistence.CascadeType.REFRESH;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,6 +13,8 @@ import javax.persistence.Table;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import static javax.persistence.CascadeType.*;
 
 @Entity
 @Table(name = "book")
@@ -93,8 +89,6 @@ public class Book {
     return "Book{" +
         "id=" + id +
         ", name='" + name + '\'' +
-        ", author=" + author +
-        ", language=" + language +
         ", publishedIn=" + publishedIn +
         '}';
   }

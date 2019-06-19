@@ -2,6 +2,8 @@ package by.cources.spring.exam.service;
 
 import by.cources.spring.exam.model.Author;
 import by.cources.spring.exam.model.Book;
+import by.cources.spring.exam.model.Language;
+
 import java.util.List;
 import java.util.Optional;
 import javax.transaction.Transactional;
@@ -26,4 +28,5 @@ public interface BookService {
   Book saveBook(Book book);
 
   Optional<Book> findBookById(Long id);
+  Optional<Language> findLanguagedescription(String name);
 }
